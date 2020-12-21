@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>{{ _('Неизвестная ошибка') }}</h1>
+    <p>{{ _('Администратор уведомлён!') }}</p>
+    <p><a href="{{ url_for('main.index') }}">{{ _('Назад') }}</a></p>
+{% endblock %}
