@@ -4,16 +4,16 @@ services:
     build:
       context: . # 10.72.241.144:1488
     # image: airegistry.mtsai.tk/egg/preprod/ssformob:latest
-    container_name: microblog_
+    container_name: ssformob_
     restart: unless-stopped
     ports:
       - 1488:80
     volumes:
-      - ./migrations/:/microblog/migrations/
+      - ./migrations/:/ssformob/migrations/
 
       # - ./var/log/nginx/:/var/log/nginx/
       # - ./var/log/uwsgi/:/var/log/uwsgi/
-      - ./var/log/microblog/:/var/log/microblog/
+      - ./var/log/ssformob/:/var/log/ssformob/
     env_file:
       - mic.env
     depends_on:
@@ -21,12 +21,12 @@ services:
 
   db:
     image: postgres:latest
-    container_name: postgre_microblog
+    container_name: postgre_ssformob
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: sspostgres
-      POSTGRES_DB: microblog
+      POSTGRES_DB: ssformob
     ports:
       - 5432:5432
     # volumes:
