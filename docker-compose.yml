@@ -7,7 +7,7 @@ services:
     container_name: ssformob_
     restart: unless-stopped
     ports:
-      - 1488:80
+      - 8000:80
     volumes:
       - ./migrations/:/ssformob/migrations/
 
@@ -20,14 +20,15 @@ services:
       - db
 
   db:
-    image: postgres:latest
-    container_name: postgre_ssformob
-    restart: unless-stopped
+    image: mysql:latest
+    container_name: mysql_ssformob
+    restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: sspostgres
-      POSTGRES_DB: ssformob
+      MYSQL_ROOT_PASSWORD: "{DB_ROOT_RW}"
+      MYSQL_DATABASE: "{DB_NAME}"
+      MYSQL_USER: "{DB_USER}"
+      MYSQL_PASSWORD: "{DB_PW}"
     ports:
-      - 5432:5432
+      - 8000:3306
     # volumes:
     #   - ./db-data:/var/lib/postgresql/data/:z
